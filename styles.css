@@ -1,0 +1,735 @@
+/* ==========================================================================
+   brick_bread — personal site
+   Direction: "node graph in fired clay". The page is the network, drawn.
+   Ground is mortar-grey stock; the accent is a structural material, not trim.
+   ========================================================================== */
+
+:root {
+  /* --- material palette --- */
+  --kiln:    #17130f;   /* fired-black ink */
+  --kiln-70: rgba(23, 19, 15, .70);
+  --kiln-45: rgba(23, 19, 15, .45);
+  --kiln-18: rgba(23, 19, 15, .18);
+  --kiln-08: rgba(23, 19, 15, .08);
+
+  --mortar:   #cdc3b4;  /* page ground — dusty mortar, not paper */
+  --slip:     #e6dfd3;  /* raised / lit surface */
+  --slip-hot: #ece6dc;  /* hover surface */
+
+  --clay:      #b4552f; /* fired brick face — the primary accent */
+  --clay-lit:  #c9663c; /* top face, light side */
+  --clay-mid:  #a04a28; /* left face */
+  --clay-dark: #7d3a20; /* right face, shadow side */
+
+  --slate:      #3f6d8c; /* the cool layer: proxy, links, live state */
+  --slate-lit:  #4f80a1;
+  --slate-dark: #2c5570;
+
+  /* --- type --- */
+  --display: 'Bricolage Grotesque', 'Arial Black', sans-serif;
+  --body:    'Familjen Grotesk', system-ui, sans-serif;
+  --mono:    'Martian Mono', ui-monospace, monospace;
+
+  /* --- measure --- */
+  --gutter: 40px;
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--mortar);
+  color: var(--kiln);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* chipboard tooth: a fine grain over the whole ground */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+}
+
+::selection { background: var(--clay); color: var(--slip); }
+
+img, svg { max-width: 100%; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+}
+
+.bb-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--kiln);
+  color: var(--slip);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  z-index: 200;
+  text-decoration: none;
+}
+.bb-skip:focus { left: 12px; top: 12px; }
+
+/* --------------------------------------------------------------------------
+   Shared type roles
+   -------------------------------------------------------------------------- */
+
+.bb-display {
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: .92;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.bb-mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* section eyebrow: a tiny brick, the name, a mortar joint, then real meta */
+.bb-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 34px;
+  color: var(--kiln-70);
+}
+.bb-eyebrow::before {
+  content: "";
+  flex: none;
+  width: 18px;
+  height: 9px;
+  background: var(--clay);
+  box-shadow: 0 0 0 1px var(--kiln-18);
+}
+.bb-eyebrow-name { color: var(--kiln); font-weight: 700; letter-spacing: .12em; }
+.bb-eyebrow-rule { flex: 1; height: 1px; background: var(--kiln-18); }
+.bb-eyebrow-meta { flex: none; }
+
+/* --------------------------------------------------------------------------
+   Layout scaffold
+   -------------------------------------------------------------------------- */
+
+.bb-wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Each section sits in its own .bb-wrap so the joints between them can run
+   full-bleed, which means sections are never siblings — the gap between two
+   sections is this padding twice, with the hairline landing in the middle. */
+.bb-section { padding: 96px 0; position: relative; }
+
+.bb-joint { height: 1px; background: var(--kiln-18); margin: 0; border: 0; }
+
+/* --------------------------------------------------------------------------
+   Nav
+   -------------------------------------------------------------------------- */
+
+.bb-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px var(--gutter);
+  background: var(--mortar);
+  border-bottom: 1px solid var(--kiln-18);
+}
+
+.bb-wordmark {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.bb-wordmark::before {
+  content: "";
+  width: 16px;
+  height: 8px;
+  background: var(--clay);
+  box-shadow: 0 0 0 1px var(--kiln-18);
+}
+
+.bb-navlinks { display: flex; align-items: center; gap: 30px; }
+
+.bb-navlink {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--kiln-70);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color .15s linear, border-color .15s linear;
+}
+.bb-navlink:hover,
+.bb-navlink[aria-current="true"] {
+  color: var(--kiln);
+  border-bottom-color: var(--clay);
+}
+
+.bb-burger {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--kiln-18);
+  color: var(--kiln);
+  padding: 9px;
+  line-height: 0;
+  cursor: pointer;
+}
+
+#bb-sheet {
+  display: none;
+  position: sticky;
+  top: 57px;
+  z-index: 59;
+  background: var(--slip);
+  border-bottom: 1px solid var(--kiln-18);
+  padding: 8px var(--gutter) 18px;
+}
+#bb-sheet a {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 2px;
+  border-bottom: 1px solid var(--kiln-08);
+}
+#bb-sheet.bb-open { display: block; }
+
+/* --------------------------------------------------------------------------
+   Hero — thesis left, the stack right
+   -------------------------------------------------------------------------- */
+
+.bb-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 56px;
+  align-items: center;
+  padding: 92px 0 104px;
+}
+
+.bb-hero-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  color: var(--kiln-70);
+  margin: 0 0 26px;
+}
+.bb-hero-kicker b { color: var(--kiln); font-weight: 700; }
+.bb-hero-kicker span[aria-hidden] { color: var(--clay); }
+
+.bb-hero h1 { font-size: clamp(46px, 6.2vw, 90px); max-width: 13ch; }
+.bb-hero h1 em { font-style: normal; color: var(--clay); }
+
+.bb-lede {
+  font-size: clamp(17px, 1.35vw, 19px);
+  line-height: 1.62;
+  color: var(--kiln-70);
+  max-width: 46ch;
+  margin: 26px 0 0;
+}
+.bb-lede strong { color: var(--kiln); font-weight: 600; }
+
+.bb-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+
+/* buttons: hard-edged pressed slabs — no glow, no radius */
+.bb-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--kiln);
+  transition: transform .12s linear, box-shadow .12s linear, background .12s linear;
+}
+.bb-btn-solid {
+  background: var(--clay);
+  color: var(--slip);
+  box-shadow: 4px 4px 0 var(--kiln);
+}
+.bb-btn-solid:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--kiln); }
+.bb-btn-solid:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--kiln); }
+
+.bb-btn-ghost {
+  background: transparent;
+  color: var(--kiln);
+  box-shadow: 4px 4px 0 var(--kiln-18);
+}
+.bb-btn-ghost:hover { background: var(--slip); transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--kiln-18); }
+
+/* --------------------------------------------------------------------------
+   Signature: the annotated wall (axonometric, five courses)
+   -------------------------------------------------------------------------- */
+
+.bb-stack-fig { margin: 0; position: relative; }
+.bb-stack { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* Hover slides a course out of the wall toward the viewer, along the same axis
+   as the brick's depth. It has to move this way rather than straight up: SVG
+   paints in document order, so a course lifted upward would slide behind the
+   one above it. Sliding out means it correctly overlaps the courses below. */
+.bb-brick-body { transition: transform .22s cubic-bezier(.2, .7, .2, 1); }
+.bb-brick:hover .bb-brick-body { transform: translate(-15px, 9px); }
+
+.bb-face { stroke: var(--kiln); stroke-width: 1; stroke-linejoin: round; }
+.bb-face-top   { fill: var(--clay-lit); }
+.bb-face-left  { fill: var(--clay-mid); }
+.bb-face-right { fill: var(--clay-dark); }
+
+/* the proxy course is a different material — it isn't a game server */
+.bb-brick-proxy .bb-face-top   { fill: var(--slate-lit); }
+.bb-brick-proxy .bb-face-left  { fill: var(--slate); }
+.bb-brick-proxy .bb-face-right { fill: var(--slate-dark); }
+
+.bb-leader { stroke: var(--kiln-45); stroke-width: 1; fill: none; }
+.bb-brick:hover .bb-leader { stroke: var(--kiln); }
+
+/* Sizes are in viewBox units, not screen px: the 704-unit drawing renders into a
+   ~535px column, so everything here lands about 0.76x smaller than it reads. */
+.bb-anno-num {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  fill: var(--clay);
+}
+.bb-anno-name {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  fill: var(--kiln);
+}
+.bb-anno-sub { font-family: var(--body); font-size: 17px; fill: var(--kiln-70); }
+
+.bb-stack-note {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--kiln-70);
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--kiln-18);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bb-dot { flex: none; width: 7px; height: 7px; background: var(--slate); border-radius: 50%; }
+
+/* mobile twin of the annotations — read once per viewport */
+.bb-stack-list { display: none; list-style: none; margin: 22px 0 0; padding: 0; }
+.bb-stack-list li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-top: 1px solid var(--kiln-18);
+}
+.bb-stack-list b {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.bb-stack-list span { color: var(--kiln-70); font-size: 14.5px; }
+.bb-stack-list i {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 10px;
+  color: var(--clay);
+  flex: none;
+  padding-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Work — laid in running bond
+   -------------------------------------------------------------------------- */
+
+.bb-bond { display: grid; gap: 22px; }
+
+.bb-course { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+
+/* one long brick — a soldier course */
+.bb-course-single { grid-template-columns: minmax(0, 1fr); }
+
+/* the next course carries its joint off-centre, so no two courses line up. Same
+   reason a wall is laid in running bond and not stack bond: staggered joints. */
+.bb-course-bond { grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); }
+
+.bb-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  background: var(--slip);
+  border: 1px solid var(--kiln);
+  box-shadow: 5px 5px 0 var(--kiln-18);
+  padding: 26px 26px 24px;
+  transition: transform .14s linear, box-shadow .14s linear, background .14s linear;
+}
+.bb-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--clay);
+  background: var(--slip-hot);
+}
+
+.bb-card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+
+.bb-role {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--slip);
+  background: var(--kiln);
+  padding: 5px 9px;
+  flex: none;
+}
+.bb-role-clay { background: var(--clay); }
+
+.bb-card-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: var(--kiln-45);
+  flex: none;
+}
+
+.bb-card h3 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(25px, 2.6vw, 34px);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  margin: 4px 0 0;
+}
+.bb-card-lead h3 { font-size: clamp(30px, 3.6vw, 46px); }
+
+.bb-card p {
+  margin: 0;
+  color: var(--kiln-70);
+  font-size: 15.5px;
+  line-height: 1.58;
+  max-width: 54ch;
+}
+
+.bb-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 6px; }
+.bb-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--kiln-70);
+  border: 1px solid var(--kiln-18);
+  padding: 4px 8px;
+}
+
+.bb-card-cta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--clay);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.bb-card-cta svg { transition: transform .16s linear; }
+.bb-card:hover .bb-card-cta svg { transform: translateX(4px); }
+
+/* --------------------------------------------------------------------------
+   Stack / manifest table
+   -------------------------------------------------------------------------- */
+
+.bb-manifest { border-top: 1px solid var(--kiln); }
+
+.bb-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.5fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--kiln-18);
+  transition: background .14s linear, padding-left .14s linear;
+}
+.bb-row:hover { background: var(--slip); padding-left: 12px; }
+
+.bb-row-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+.bb-row-what { color: var(--kiln-70); font-size: 15.5px; }
+
+.bb-state {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border: 1px solid var(--kiln);
+  white-space: nowrap;
+  justify-self: end;
+}
+.bb-state-solid { background: var(--kiln); color: var(--slip); }
+.bb-state-learn { background: transparent; color: var(--kiln-70); border-style: dashed; }
+.bb-state-live  { background: var(--slate); color: var(--slip); border-color: var(--slate-dark); }
+
+/* --------------------------------------------------------------------------
+   About
+   -------------------------------------------------------------------------- */
+
+.bb-about { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; }
+
+.bb-prose p { margin: 0 0 18px; font-size: 17px; line-height: 1.68; color: var(--kiln-70); max-width: 56ch; }
+.bb-prose p:last-child { margin-bottom: 0; }
+.bb-prose strong { color: var(--kiln); font-weight: 600; }
+
+.bb-spec { border-top: 1px solid var(--kiln); margin: 0; }
+.bb-spec div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--kiln-18);
+}
+.bb-spec dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--kiln-45);
+  margin: 0;
+  flex: none;
+}
+.bb-spec dd { margin: 0; font-size: 15px; text-align: right; font-weight: 500; }
+
+/* --------------------------------------------------------------------------
+   Contact
+   -------------------------------------------------------------------------- */
+
+.bb-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.bb-contact h2 { font-size: clamp(40px, 5.4vw, 74px); max-width: 12ch; }
+.bb-contact h2 em { font-style: normal; color: var(--clay); }
+
+.bb-links { display: flex; flex-direction: column; gap: 12px; }
+
+.bb-link-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  border: 1px solid var(--kiln);
+  background: var(--slip);
+  box-shadow: 4px 4px 0 var(--kiln-18);
+  padding: 18px 20px;
+  transition: transform .14s linear, box-shadow .14s linear, background .14s linear;
+}
+.bb-link-row:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--clay); background: var(--slip-hot); }
+.bb-link-row svg { flex: none; }
+.bb-link-label { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.bb-link-sub { font-size: 14px; color: var(--kiln-70); margin-left: auto; text-align: right; }
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.bb-foot {
+  border-top: 1px solid var(--kiln);
+  padding: 26px var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 26px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--kiln-45);
+}
+.bb-foot a { color: var(--kiln-70); text-decoration: none; border-bottom: 1px solid var(--kiln-18); }
+.bb-foot a:hover { color: var(--clay); border-bottom-color: var(--clay); }
+
+/* --------------------------------------------------------------------------
+   Case studies (projects/)
+   -------------------------------------------------------------------------- */
+
+.bb-case { display: none; padding: 66px 0 40px; }
+.bb-case.bb-case-on { display: block; }
+
+.bb-case-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.bb-case h1 { font-size: clamp(36px, 5.4vw, 74px); max-width: 16ch; }
+.bb-case-body { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 48px; margin-top: 52px; align-items: start; }
+.bb-case-aside { position: sticky; top: 92px; }
+
+.bb-case-prose h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  margin: 38px 0 12px;
+}
+.bb-case-prose h2:first-child { margin-top: 0; }
+.bb-case-prose p { margin: 0 0 16px; color: var(--kiln-70); line-height: 1.68; max-width: 62ch; }
+.bb-case-prose ul { margin: 0 0 16px; padding-left: 0; list-style: none; max-width: 62ch; }
+.bb-case-prose li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 9px;
+  color: var(--kiln-70);
+  line-height: 1.6;
+}
+.bb-case-prose li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .62em;
+  width: 13px; height: 7px;
+  background: var(--clay);
+  box-shadow: 0 0 0 1px var(--kiln-18);
+}
+
+.bb-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--kiln-70);
+  margin-bottom: 28px;
+}
+.bb-back:hover { color: var(--clay); }
+.bb-back svg { transition: transform .16s linear; }
+.bb-back:hover svg { transform: translateX(-4px); }
+
+.bb-case-switch { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+.bb-case-switch a {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 9px 13px;
+  border: 1px solid var(--kiln-18);
+  color: var(--kiln-70);
+}
+.bb-case-switch a:hover { border-color: var(--kiln); color: var(--kiln); }
+.bb-case-switch a[aria-current="true"] { background: var(--kiln); border-color: var(--kiln); color: var(--slip); }
+
+/* --------------------------------------------------------------------------
+   Motion
+   -------------------------------------------------------------------------- */
+
+.bb-rise { opacity: 0; transform: translateY(18px); }
+.bb-rise.bb-in { opacity: 1; transform: none; transition: opacity .55s ease, transform .55s cubic-bezier(.2, .7, .2, 1); }
+
+/* the build: courses settle from the base up */
+@keyframes bb-settle {
+  from { opacity: 0; transform: translate(0, -34px); }
+  to   { opacity: 1; transform: translate(0, 0); }
+}
+.bb-brick { animation: bb-settle .62s cubic-bezier(.2, .8, .25, 1) backwards; }
+.bb-brick-1 { animation-delay: .05s; }
+.bb-brick-2 { animation-delay: .16s; }
+.bb-brick-3 { animation-delay: .27s; }
+.bb-brick-4 { animation-delay: .38s; }
+.bb-brick-5 { animation-delay: .49s; }
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1040px) {
+  .bb-hero { grid-template-columns: minmax(0, 1fr); gap: 46px; padding-top: 68px; }
+  .bb-about, .bb-contact { grid-template-columns: minmax(0, 1fr); gap: 38px; }
+  .bb-case-body { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .bb-case-aside { position: static; }
+}
+
+@media (max-width: 860px) {
+  :root { --gutter: 26px; }
+  .bb-navlinks { display: none; }
+  .bb-burger { display: block; }
+  .bb-section { padding: 68px 0; }
+  .bb-course { grid-template-columns: minmax(0, 1fr); }
+  /* one card per row on narrow screens: no bond to stagger */
+  .bb-course-bond, .bb-course-single { grid-template-columns: minmax(0, 1fr); }
+  .bb-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .bb-row-what { grid-column: 1 / -1; }
+  .bb-eyebrow-meta { display: none; }
+}
+
+@media (max-width: 760px) {
+  .bb-anno { display: none; }
+  .bb-stack-list { display: block; }
+}
+
+@media (max-width: 560px) {
+  .bb-link-sub { display: none; }
+  .bb-spec div { flex-direction: column; gap: 3px; }
+  .bb-spec dd { text-align: left; }
+  .bb-foot { justify-content: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: .01ms !important;
+  }
+  .bb-rise { opacity: 1; transform: none; }
+}
+
+@media print {
+  .bb-nav, #bb-sheet { display: none; }
+  body { background: #fff; background-image: none; }
+}

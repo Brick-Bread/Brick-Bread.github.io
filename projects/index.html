@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Write-ups — brick_bread</title>
+<meta name="description" content="Longer write-ups on the Velocity Player Tracker, Brickworks Network and Zyralis Network.">
+<meta name="theme-color" content="#cdc3b4">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Familjen+Grotesk:wght@400;500;600&family=Martian+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="bb-skip" href="#main">Skip to content</a>
+
+<header class="bb-nav">
+  <a class="bb-wordmark" href="../">brick_bread</a>
+  <nav class="bb-navlinks" aria-label="Sections">
+    <a class="bb-navlink" href="../#work">Work</a>
+    <a class="bb-navlink" href="../#stack">Stack</a>
+    <a class="bb-navlink" href="../#about">About</a>
+    <a class="bb-navlink" href="../#contact">Contact</a>
+  </nav>
+  <button class="bb-burger" id="bb-burger" aria-label="Open menu" aria-expanded="false" aria-controls="bb-sheet">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</header>
+
+<div id="bb-sheet">
+  <a href="../#work">Work</a>
+  <a href="../#stack">Stack</a>
+  <a href="../#about">About</a>
+  <a href="../#contact">Contact</a>
+</div>
+
+<main id="main" class="bb-wrap">
+
+<!-- ==================== VELOCITY PLAYER TRACKER ==================== -->
+<article class="bb-case" id="tracker">
+  <a class="bb-back" href="../#work">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H6"/><path d="M12 19l-7-7 7-7"/></svg>
+    All work
+  </a>
+
+  <div class="bb-case-head">
+    <h1 class="bb-display">Velocity Player Tracker</h1>
+    <span class="bb-role bb-role-clay">Java plugin</span>
+  </div>
+
+  <div class="bb-case-body">
+    <aside class="bb-case-aside">
+      <dl class="bb-spec">
+        <div><dt>Role</dt><dd>Sole developer</dd></div>
+        <div><dt>Context</dt><dd>A Level CS coursework</dd></div>
+        <div><dt>Platform</dt><dd>Velocity proxy</dd></div>
+        <div><dt>Language</dt><dd>Java</dd></div>
+        <div><dt>Runs on</dt><dd>Brickworks Network</dd></div>
+      </dl>
+      <nav class="bb-case-switch" style="margin-top:22px;" aria-label="Other write-ups">
+        <a href="#brickworks">Brickworks</a>
+        <a href="#zyralis">Zyralis</a>
+      </nav>
+    </aside>
+
+    <div class="bb-case-prose">
+      <h2>The problem</h2>
+      <p>
+        A Minecraft network isn't one server. A proxy sits at the front and hands players
+        off to whichever backend they've chosen, which means no single server ever sees a
+        player's whole session. Each one only knows about the slice of time that player
+        spent on it. If you want to answer something as basic as "where has this person
+        actually been tonight?", there's nowhere to ask.
+      </p>
+
+      <h2>What I built</h2>
+      <p>
+        A plugin that lives on the Velocity proxy rather than on any one backend, so it
+        sits at the only point in the network that sees every transfer. It follows players
+        across the servers behind the proxy, records what they do, and surfaces that
+        while they're still online instead of leaving it in a log to read later.
+      </p>
+      <ul>
+        <li>Tracks players across every server behind the proxy, not per-server</li>
+        <li>Logs activity as it happens, keyed to the player rather than the box</li>
+        <li>Reports back in real time, so it's useful during a session and not just after one</li>
+      </ul>
+
+      <h2>Why this one</h2>
+      <p>
+        It was my A Level Computer Science coursework, but I picked it because it was a
+        problem I already had on my own network — not an exercise invented to be marked.
+        That made the requirements easy to write and the testing honest: either it told
+        me something true about my players or it didn't.
+      </p>
+
+      <h2>What it taught me</h2>
+      <p>
+        This was the project where Java stopped being a syllabus language. Working against
+        the Velocity API meant reading real documentation, dealing with events firing in an
+        order I didn't choose, and thinking about what happens to state when a player
+        disconnects mid-transfer. It also made me a lot more careful about what's worth
+        recording in the first place.
+      </p>
+    </div>
+  </div>
+</article>
+
+<!-- ==================== BRICKWORKS NETWORK ==================== -->
+<article class="bb-case" id="brickworks">
+  <a class="bb-back" href="../#work">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H6"/><path d="M12 19l-7-7 7-7"/></svg>
+    All work
+  </a>
+
+  <div class="bb-case-head">
+    <h1 class="bb-display">Brickworks Network</h1>
+    <span class="bb-role">Owner</span>
+  </div>
+
+  <div class="bb-case-body">
+    <aside class="bb-case-aside">
+      <dl class="bb-spec">
+        <div><dt>Role</dt><dd>Owner &amp; developer</dd></div>
+        <div><dt>Status</dt><dd>Ongoing</dd></div>
+        <div><dt>Logic</dt><dd>Skript</dd></div>
+        <div><dt>Front door</dt><dd>Velocity proxy</dd></div>
+        <div><dt>I handle</dt><dd>Dev · hosting · content</dd></div>
+      </dl>
+      <nav class="bb-case-switch" style="margin-top:22px;" aria-label="Other write-ups">
+        <a href="#tracker">Player Tracker</a>
+        <a href="#zyralis">Zyralis</a>
+      </nav>
+    </aside>
+
+    <div class="bb-case-prose">
+      <h2>What it is</h2>
+      <p>
+        My own Minecraft network — the thing every other item on this site connects back
+        to. There's no team to hand parts of it to, so I do all of it: the server logic,
+        the hosting, and the content that gives anyone a reason to join in the first place.
+      </p>
+
+      <h2>Building it</h2>
+      <p>
+        The gameplay systems are written in Skript, which is where most of my server-side
+        logic lives. A Velocity proxy sits in front as the front door, and everything runs
+        on infrastructure I look after myself rather than a panel someone else controls.
+      </p>
+      <ul>
+        <li>Custom server systems written and maintained in Skript</li>
+        <li>Hosting, updates and uptime — including the parts that break at inconvenient times</li>
+        <li>Content and media made around the network, not bolted on afterwards</li>
+      </ul>
+
+      <h2>Running it</h2>
+      <p>
+        Owning a network is mostly the unglamorous half: working out why something died,
+        deciding whether a feature is worth the maintenance it will cost, and keeping
+        players informed when it's down. Doing development and community at the same time
+        means I feel the consequences of my own technical decisions quite quickly.
+      </p>
+
+      <h2>What it taught me</h2>
+      <p>
+        Almost everything I know about systems came from here. Self-hosting Brickworks is
+        what pushed me into Linux, Docker and networking properly, and it's the reason I
+        write code with "what happens when this fails at 2am" in mind.
+      </p>
+    </div>
+  </div>
+</article>
+
+<!-- ==================== ZYRALIS NETWORK ==================== -->
+<article class="bb-case" id="zyralis">
+  <a class="bb-back" href="../#work">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H6"/><path d="M12 19l-7-7 7-7"/></svg>
+    All work
+  </a>
+
+  <div class="bb-case-head">
+    <h1 class="bb-display">Zyralis Network</h1>
+    <span class="bb-role">Media &amp; GM</span>
+  </div>
+
+  <div class="bb-case-body">
+    <aside class="bb-case-aside">
+      <dl class="bb-spec">
+        <div><dt>Role</dt><dd>Media Manager</dd></div>
+        <div><dt>Also</dt><dd>General Manager</dd></div>
+        <div><dt>Status</dt><dd>Ongoing</dd></div>
+        <div><dt>Focus</dt><dd>Content · community · ops</dd></div>
+      </dl>
+      <nav class="bb-case-switch" style="margin-top:22px;" aria-label="Other write-ups">
+        <a href="#tracker">Player Tracker</a>
+        <a href="#brickworks">Brickworks</a>
+      </nav>
+    </aside>
+
+    <div class="bb-case-prose">
+      <h2>The role</h2>
+      <p>
+        I'm Media Manager and one of the General Managers at Zyralis. The media half is
+        content direction — deciding what gets made, how the network presents itself, and
+        keeping that consistent. The GM half is the day-to-day of actually running a
+        network with other people in it.
+      </p>
+
+      <h2>What I do</h2>
+      <ul>
+        <li>Set and hold the content direction across the network's media</li>
+        <li>Work with the community directly, rather than through announcements only</li>
+        <li>Handle day-to-day operations and the decisions that can't wait for a meeting</li>
+      </ul>
+
+      <h2>Why it's different to Brickworks</h2>
+      <p>
+        On Brickworks I answer to myself. At Zyralis I'm working inside someone else's
+        network with a team, which means writing things down, agreeing on direction before
+        acting, and handing work over cleanly. It's been the more useful of the two for
+        learning how to work with people instead of just around them.
+      </p>
+
+      <h2>What it taught me</h2>
+      <p>
+        That the community side isn't separate from the technical side. A feature nobody
+        understands might as well not exist, and an outage handled well costs you less
+        than a quiet one handled badly.
+      </p>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer class="bb-foot">
+  <span>© 2026 Liam Mercer</span>
+  <span>Hand-written HTML &amp; CSS — no framework</span>
+  <span><a href="../">Back to the site</a></span>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

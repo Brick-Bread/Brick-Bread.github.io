@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>brick_bread — Minecraft networks, built and kept online</title>
+<meta name="description" content="Liam Mercer (brick_bread) — owner and developer of Brickworks Network, media and operations at Zyralis, and an A Level Computer Science student in the UK.">
+<meta name="theme-color" content="#cdc3b4">
+<meta name="author" content="Liam Mercer">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="brick_bread — Minecraft networks, built and kept online">
+<meta property="og:description" content="Owner and developer of Brickworks Network, media and operations at Zyralis, and an A Level Computer Science student in the UK.">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Familjen+Grotesk:wght@400;500;600&family=Martian+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="bb-skip" href="#main">Skip to content</a>
+
+<!-- ============================ NAV ============================ -->
+<header class="bb-nav">
+  <a class="bb-wordmark" href="#top">brick_bread</a>
+  <nav class="bb-navlinks" aria-label="Sections">
+    <a class="bb-navlink" href="#work">Work</a>
+    <a class="bb-navlink" href="#stack">Stack</a>
+    <a class="bb-navlink" href="#about">About</a>
+    <a class="bb-navlink" href="#contact">Contact</a>
+  </nav>
+  <button class="bb-burger" id="bb-burger" aria-label="Open menu" aria-expanded="false" aria-controls="bb-sheet">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</header>
+
+<div id="bb-sheet">
+  <a href="#work">Work</a>
+  <a href="#stack">Stack</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ============================ HERO ============================ -->
+<div class="bb-wrap">
+  <section class="bb-hero">
+    <div>
+      <p class="bb-hero-kicker bb-mono">
+        <b>Liam Mercer</b> <span aria-hidden="true">/</span> brick_bread <span aria-hidden="true">/</span> United Kingdom
+      </p>
+      <h1 class="bb-display">The network <em>is</em> the portfolio</h1>
+      <p class="bb-lede">
+        I own and build <strong>Brickworks Network</strong>, run media and operations for
+        <strong>Zyralis</strong>, and I'm working through A Levels in Computer Science,
+        Business and Criminology. Most of what I know came from keeping servers online.
+      </p>
+      <div class="bb-actions">
+        <a class="bb-btn bb-btn-solid" href="#work">See the work</a>
+        <a class="bb-btn bb-btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <!-- ---- SIGNATURE: annotated axonometric of the things I run ---- -->
+    <figure class="bb-stack-fig">
+      <svg class="bb-stack" viewBox="-104 -272 704 498" role="img"
+           aria-label="An axonometric drawing of a five-course brick wall, labelled bottom to top: Ubuntu, Docker, Jellyfin, Brickworks, and a Velocity proxy as the top course."
+           xmlns="http://www.w3.org/2000/svg">
+
+        <!-- course 01 — Ubuntu -->
+        <g transform="translate(0,0)">
+          <g class="bb-brick bb-brick-1">
+            <g class="bb-brick-body">
+              <path class="bb-face bb-face-left"  d="M-84 48 L84 144 L84 206 L-84 110 Z"/>
+              <path class="bb-face bb-face-right" d="M168 96 L84 144 L84 206 L168 158 Z"/>
+              <path class="bb-face bb-face-top"   d="M0 0 L168 96 L84 144 L-84 48 Z"/>
+            </g>
+            <path class="bb-leader" d="M172 127 H296"/>
+            <g class="bb-anno">
+              <text class="bb-anno-num"  x="306" y="122">01</text>
+              <text class="bb-anno-name" x="346" y="122">UBUNTU</text>
+              <text class="bb-anno-sub"  x="346" y="146">The host it all sits on</text>
+            </g>
+          </g>
+        </g>
+
+        <!-- course 02 — Docker -->
+        <g transform="translate(0,-62)">
+          <g class="bb-brick bb-brick-2">
+            <g class="bb-brick-body">
+              <path class="bb-face bb-face-left"  d="M-84 48 L84 144 L84 206 L-84 110 Z"/>
+              <path class="bb-face bb-face-right" d="M168 96 L84 144 L84 206 L168 158 Z"/>
+              <path class="bb-face bb-face-top"   d="M0 0 L168 96 L84 144 L-84 48 Z"/>
+            </g>
+            <path class="bb-leader" d="M172 127 H296"/>
+            <g class="bb-anno">
+              <text class="bb-anno-num"  x="306" y="122">02</text>
+              <text class="bb-anno-name" x="346" y="122">DOCKER</text>
+              <text class="bb-anno-sub"  x="346" y="146">One container per service</text>
+            </g>
+          </g>
+        </g>
+
+        <!-- course 03 — Jellyfin -->
+        <g transform="translate(0,-124)">
+          <g class="bb-brick bb-brick-3">
+            <g class="bb-brick-body">
+              <path class="bb-face bb-face-left"  d="M-84 48 L84 144 L84 206 L-84 110 Z"/>
+              <path class="bb-face bb-face-right" d="M168 96 L84 144 L84 206 L168 158 Z"/>
+              <path class="bb-face bb-face-top"   d="M0 0 L168 96 L84 144 L-84 48 Z"/>
+            </g>
+            <path class="bb-leader" d="M172 127 H296"/>
+            <g class="bb-anno">
+              <text class="bb-anno-num"  x="306" y="122">03</text>
+              <text class="bb-anno-name" x="346" y="122">JELLYFIN</text>
+              <text class="bb-anno-sub"  x="346" y="146">Self-hosted media</text>
+            </g>
+          </g>
+        </g>
+
+        <!-- course 04 — Brickworks SMP -->
+        <g transform="translate(0,-186)">
+          <g class="bb-brick bb-brick-4">
+            <g class="bb-brick-body">
+              <path class="bb-face bb-face-left"  d="M-84 48 L84 144 L84 206 L-84 110 Z"/>
+              <path class="bb-face bb-face-right" d="M168 96 L84 144 L84 206 L168 158 Z"/>
+              <path class="bb-face bb-face-top"   d="M0 0 L168 96 L84 144 L-84 48 Z"/>
+            </g>
+            <path class="bb-leader" d="M172 127 H296"/>
+            <g class="bb-anno">
+              <text class="bb-anno-num"  x="306" y="122">04</text>
+              <text class="bb-anno-name" x="346" y="122">BRICKWORKS</text>
+              <text class="bb-anno-sub"  x="346" y="146">Skript, ops, content</text>
+            </g>
+          </g>
+        </g>
+
+        <!-- course 05 — Velocity proxy (different material: not a game server) -->
+        <g transform="translate(0,-248)">
+          <g class="bb-brick bb-brick-5 bb-brick-proxy">
+            <g class="bb-brick-body">
+              <path class="bb-face bb-face-left"  d="M-84 48 L84 144 L84 206 L-84 110 Z"/>
+              <path class="bb-face bb-face-right" d="M168 96 L84 144 L84 206 L168 158 Z"/>
+              <path class="bb-face bb-face-top"   d="M0 0 L168 96 L84 144 L-84 48 Z"/>
+            </g>
+            <path class="bb-leader" d="M172 127 H296"/>
+            <g class="bb-anno">
+              <text class="bb-anno-num"  x="306" y="122">05</text>
+              <text class="bb-anno-name" x="346" y="122">VELOCITY PROXY</text>
+              <text class="bb-anno-sub"  x="346" y="146">The front door</text>
+            </g>
+          </g>
+        </g>
+      </svg>
+
+      <!-- annotations again, for narrow screens where the callouts don't fit -->
+      <ul class="bb-stack-list">
+        <li><i>05</i><b>Velocity proxy</b><span>The front door</span></li>
+        <li><i>04</i><b>Brickworks</b><span>Skript, ops, content</span></li>
+        <li><i>03</i><b>Jellyfin</b><span>Self-hosted media</span></li>
+        <li><i>02</i><b>Docker</b><span>One container per service</span></li>
+        <li><i>01</i><b>Ubuntu</b><span>The host it all sits on</span></li>
+      </ul>
+
+      <figcaption class="bb-stack-note">
+        <span class="bb-dot" aria-hidden="true"></span>
+        Five courses, laid bottom-up. The blue one is the only thing that isn't a game server.
+      </figcaption>
+    </figure>
+  </section>
+</div>
+
+<hr class="bb-joint">
+
+<!-- ============================ WORK ============================ -->
+<div class="bb-wrap">
+  <section class="bb-section" id="work">
+    <p class="bb-eyebrow bb-mono">
+      <span class="bb-eyebrow-name">Work</span>
+      <span class="bb-eyebrow-rule" aria-hidden="true"></span>
+      <span class="bb-eyebrow-meta">Three things I actually run</span>
+    </p>
+
+    <div class="bb-bond">
+      <!-- course one: one long brick -->
+      <div class="bb-course bb-course-single bb-rise">
+        <a class="bb-card bb-card-lead" href="projects/#tracker">
+          <div class="bb-card-top">
+            <span class="bb-role bb-role-clay">Java plugin</span>
+            <span class="bb-card-meta">A Level CS coursework</span>
+          </div>
+          <h3>Velocity Player Tracker</h3>
+          <p>
+            A Velocity proxy plugin, written in Java for my A Level Computer Science
+            coursework. It follows players as they move between the servers behind the
+            Brickworks proxy, logs what they do, and reports it back while they're still online.
+          </p>
+          <div class="bb-tags">
+            <span class="bb-tag">Java</span>
+            <span class="bb-tag">Velocity</span>
+            <span class="bb-tag">Proxy plugin</span>
+            <span class="bb-tag">A Level CS</span>
+          </div>
+          <span class="bb-card-cta">Read the write-up
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- course two: joint sits off-centre so it never lines up with the course above -->
+      <div class="bb-course bb-course-bond bb-rise">
+        <a class="bb-card" href="projects/#brickworks">
+          <div class="bb-card-top">
+            <span class="bb-role">Owner</span>
+            <span class="bb-card-meta">Ongoing</span>
+          </div>
+          <h3>Brickworks Network</h3>
+          <p>
+            My own Minecraft network. I write the server logic in Skript, keep the boxes
+            running, and make the content that brings people to it.
+          </p>
+          <div class="bb-tags">
+            <span class="bb-tag">Skript</span>
+            <span class="bb-tag">Server ops</span>
+            <span class="bb-tag">Content</span>
+          </div>
+          <span class="bb-card-cta">Read the write-up
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a class="bb-card" href="projects/#zyralis">
+          <div class="bb-card-top">
+            <span class="bb-role">Media &amp; GM</span>
+            <span class="bb-card-meta">Ongoing</span>
+          </div>
+          <h3>Zyralis Network</h3>
+          <p>
+            Media Manager and a General Manager. I set the content direction, work with
+            the community, and handle the day-to-day of running the place.
+          </p>
+          <div class="bb-tags">
+            <span class="bb-tag">Media</span>
+            <span class="bb-tag">Management</span>
+            <span class="bb-tag">Community</span>
+          </div>
+          <span class="bb-card-cta">Read the write-up
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<hr class="bb-joint">
+
+<!-- ============================ STACK ============================ -->
+<div class="bb-wrap">
+  <section class="bb-section" id="stack">
+    <p class="bb-eyebrow bb-mono">
+      <span class="bb-eyebrow-name">Stack</span>
+      <span class="bb-eyebrow-rule" aria-hidden="true"></span>
+      <span class="bb-eyebrow-meta">Honest about what's solid and what isn't</span>
+    </p>
+
+    <div class="bb-manifest bb-rise">
+      <div class="bb-row">
+        <span class="bb-row-name">Python</span>
+        <span class="bb-row-what">Scripting and automation — the language I reach for first</span>
+        <span class="bb-state bb-state-solid">Confident</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">Skript</span>
+        <span class="bb-row-what">Server-side game logic, in production on Brickworks</span>
+        <span class="bb-state bb-state-solid">Confident</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">Self-hosting</span>
+        <span class="bb-row-what">Ubuntu, Docker and Jellyfin on hardware I look after myself</span>
+        <span class="bb-state bb-state-live">In use daily</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">Java</span>
+        <span class="bb-row-what">Velocity plugins and A Level coursework</span>
+        <span class="bb-state bb-state-learn">Learning</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">JavaScript</span>
+        <span class="bb-row-what">Enough to make a page do something</span>
+        <span class="bb-state bb-state-learn">Learning</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">HTML &amp; CSS</span>
+        <span class="bb-row-what">This site, hand-written, no framework</span>
+        <span class="bb-state bb-state-learn">Learning</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<hr class="bb-joint">
+
+<!-- ============================ ABOUT ============================ -->
+<div class="bb-wrap">
+  <section class="bb-section" id="about">
+    <p class="bb-eyebrow bb-mono">
+      <span class="bb-eyebrow-name">About</span>
+      <span class="bb-eyebrow-rule" aria-hidden="true"></span>
+      <span class="bb-eyebrow-meta">Sixth form, UK</span>
+    </p>
+
+    <div class="bb-about bb-rise">
+      <div class="bb-prose">
+        <p>
+          I'm brick — a Minecraft network owner, content creator and sixth form student in
+          the UK. I've been inside the Minecraft ecosystem for years, and I've ended up
+          building both halves of it: the back-end systems, and the community that turns
+          up to use them.
+        </p>
+        <p>
+          <strong>Brickworks Network</strong> is mine end to end — development, hosting
+          and content. Alongside it I'm <strong>Media Manager</strong> and a
+          <strong>General Manager</strong> at <strong>Zyralis Network</strong>. I'm
+          confident in <strong>Python</strong> and Skript, and actively learning Java,
+          JavaScript, HTML and CSS.
+        </p>
+        <p>
+          Away from Minecraft I run my own infrastructure — Jellyfin and Docker on
+          Ubuntu — which is how I got properly interested in systems, networks and
+          full-stack work in the first place. Breaking my own server and having to fix it
+          taught me more than any tutorial.
+        </p>
+      </div>
+
+      <dl class="bb-spec">
+        <div><dt>Name</dt><dd>Liam Mercer</dd></div>
+        <div><dt>Goes by</dt><dd>brick / brick_bread</dd></div>
+        <div><dt>Based</dt><dd>United Kingdom</dd></div>
+        <div><dt>Studying</dt><dd>Computer Science · Business · Criminology</dd></div>
+        <div><dt>Roles</dt><dd>Owner · Media Manager · General Manager</dd></div>
+        <div><dt>Networks</dt><dd>Brickworks · Zyralis</dd></div>
+      </dl>
+    </div>
+  </section>
+</div>
+
+<hr class="bb-joint">
+
+<!-- ============================ CONTACT ============================ -->
+<div class="bb-wrap">
+  <section class="bb-section" id="contact">
+    <p class="bb-eyebrow bb-mono">
+      <span class="bb-eyebrow-name">Contact</span>
+      <span class="bb-eyebrow-rule" aria-hidden="true"></span>
+      <span class="bb-eyebrow-meta">Open to server work and collabs</span>
+    </p>
+
+    <div class="bb-contact bb-rise">
+      <div>
+        <h2 class="bb-display">Bring me <em>something</em> to build</h2>
+        <p class="bb-lede">
+          Server development, a plugin you need writing, media and community work, or
+          just a conversation about how you'd host it — either of these reaches me.
+        </p>
+      </div>
+
+      <div class="bb-links">
+        <a class="bb-link-row" href="https://github.com/Brick-Bread" rel="me noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-1.93c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.07.78 2.16v3.2c0 .31.2.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+          <span class="bb-link-label">GitHub</span>
+          <span class="bb-link-sub">Brick-Bread</span>
+        </a>
+        <a class="bb-link-row" href="https://www.linkedin.com/in/liam-mercer-a99ba63b9/" rel="me noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          <span class="bb-link-label">LinkedIn</span>
+          <span class="bb-link-sub">Liam Mercer</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer class="bb-foot">
+  <span>© 2026 Liam Mercer</span>
+  <span>Hand-written HTML &amp; CSS — no framework</span>
+  <span><a href="https://github.com/Brick-Bread/Brick-Bread.github.io">Source</a></span>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
