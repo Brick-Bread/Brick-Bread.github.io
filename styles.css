@@ -570,7 +570,7 @@ a { color: inherit; }
 .bb-link-row:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--clay); background: var(--slip-hot); }
 .bb-link-row svg { flex: none; }
 .bb-link-label { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
-.bb-link-sub { font-size: 14px; color: var(--kiln-70); margin-left: auto; text-align: right; }
+.bb-link-sub { font-size: 14px; color: var(--kiln-70); margin-left: auto; text-align: right; min-width: 0; overflow-wrap: anywhere; }
 
 /* --------------------------------------------------------------------------
    Footer
@@ -713,7 +713,8 @@ a { color: inherit; }
 }
 
 @media (max-width: 560px) {
-  .bb-link-sub { display: none; }
+  .bb-link-row { gap: 12px; padding: 16px; }
+  .bb-link-sub { font-size: 12.5px; }
   .bb-spec div { flex-direction: column; gap: 3px; }
   .bb-spec dd { text-align: left; }
   .bb-foot { justify-content: flex-start; }
