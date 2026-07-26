@@ -1,7 +1,6 @@
 # brick-bread.github.io
 
-Personal site for **Liam Mercer** (brick_bread) — Minecraft network owner, content
-creator, A Level Computer Science student.
+Personal site for **brick_bread** — Minecraft network owner and content creator.
 
 Live at **https://brick-bread.github.io**
 
