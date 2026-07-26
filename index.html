@@ -68,7 +68,7 @@
     <!-- ---- SIGNATURE: annotated axonometric of the things I run ---- -->
     <figure class="bb-stack-fig">
       <svg class="bb-stack" viewBox="-104 -272 704 498" role="img"
-           aria-label="An axonometric drawing of a five-course brick wall, labelled bottom to top: Ubuntu, Docker, Jellyfin, Brickworks, and a Velocity proxy as the top course."
+           aria-label="An axonometric drawing of a five-course brick wall, labelled bottom to top: Ubuntu on bare metal, Docker, the panel and Wings control plane, Paper backends, and a Velocity proxy as the top course."
            xmlns="http://www.w3.org/2000/svg">
 
         <!-- course 01 — Ubuntu -->
@@ -83,7 +83,7 @@
             <g class="bb-anno">
               <text class="bb-anno-num"  x="306" y="122">01</text>
               <text class="bb-anno-name" x="346" y="122">UBUNTU</text>
-              <text class="bb-anno-sub"  x="346" y="146">The host it all sits on</text>
+              <text class="bb-anno-sub"  x="346" y="146">Bare metal, 8 cores, 31 GB</text>
             </g>
           </g>
         </g>
@@ -105,7 +105,7 @@
           </g>
         </g>
 
-        <!-- course 03 — Jellyfin -->
+        <!-- course 03 — panel + wings control plane -->
         <g transform="translate(0,-124)">
           <g class="bb-brick bb-brick-3">
             <g class="bb-brick-body">
@@ -116,13 +116,13 @@
             <path class="bb-leader" d="M172 127 H296"/>
             <g class="bb-anno">
               <text class="bb-anno-num"  x="306" y="122">03</text>
-              <text class="bb-anno-name" x="346" y="122">JELLYFIN</text>
-              <text class="bb-anno-sub"  x="346" y="146">Self-hosted media</text>
+              <text class="bb-anno-name" x="346" y="122">PANEL + WINGS</text>
+              <text class="bb-anno-sub"  x="346" y="146">Spawns and supervises them</text>
             </g>
           </g>
         </g>
 
-        <!-- course 04 — Brickworks SMP -->
+        <!-- course 04 — Paper backends -->
         <g transform="translate(0,-186)">
           <g class="bb-brick bb-brick-4">
             <g class="bb-brick-body">
@@ -133,8 +133,8 @@
             <path class="bb-leader" d="M172 127 H296"/>
             <g class="bb-anno">
               <text class="bb-anno-num"  x="306" y="122">04</text>
-              <text class="bb-anno-name" x="346" y="122">BRICKWORKS</text>
-              <text class="bb-anno-sub"  x="346" y="146">Skript, ops, content</text>
+              <text class="bb-anno-name" x="346" y="122">PAPER BACKENDS</text>
+              <text class="bb-anno-sub"  x="346" y="146">Where players land</text>
             </g>
           </g>
         </g>
@@ -150,8 +150,8 @@
             <path class="bb-leader" d="M172 127 H296"/>
             <g class="bb-anno">
               <text class="bb-anno-num"  x="306" y="122">05</text>
-              <text class="bb-anno-name" x="346" y="122">VELOCITY PROXY</text>
-              <text class="bb-anno-sub"  x="346" y="146">The front door</text>
+              <text class="bb-anno-name" x="346" y="122">VELOCITY</text>
+              <text class="bb-anno-sub"  x="346" y="146">Front door, runs my tracker</text>
             </g>
           </g>
         </g>
@@ -159,16 +159,16 @@
 
       <!-- annotations again, for narrow screens where the callouts don't fit -->
       <ul class="bb-stack-list">
-        <li><i>05</i><b>Velocity proxy</b><span>The front door</span></li>
-        <li><i>04</i><b>Brickworks</b><span>Skript, ops, content</span></li>
-        <li><i>03</i><b>Jellyfin</b><span>Self-hosted media</span></li>
+        <li><i>05</i><b>Velocity</b><span>Front door, runs my tracker</span></li>
+        <li><i>04</i><b>Paper backends</b><span>Where players land</span></li>
+        <li><i>03</i><b>Panel + Wings</b><span>Spawns and supervises them</span></li>
         <li><i>02</i><b>Docker</b><span>One container per service</span></li>
-        <li><i>01</i><b>Ubuntu</b><span>The host it all sits on</span></li>
+        <li><i>01</i><b>Ubuntu</b><span>Bare metal, 8 cores, 31 GB</span></li>
       </ul>
 
       <figcaption class="bb-stack-note">
         <span class="bb-dot" aria-hidden="true"></span>
-        Five courses, laid bottom-up. The blue one is the only thing that isn't a game server.
+        Five layers, laid bottom-up. Everything above the metal runs in its own container.
       </figcaption>
     </figure>
   </section>
@@ -281,7 +281,7 @@
       </div>
       <div class="bb-row">
         <span class="bb-row-name">Self-hosting</span>
-        <span class="bb-row-what">Ubuntu, Docker and Jellyfin on hardware I look after myself</span>
+        <span class="bb-row-what">Bare-metal Ubuntu, Docker, nginx and Tailscale — the wall up there is my box</span>
         <span class="bb-state bb-state-live">In use daily</span>
       </div>
       <div class="bb-row">
@@ -298,6 +298,45 @@
         <span class="bb-row-name">HTML &amp; CSS</span>
         <span class="bb-row-what">This site, hand-written, no framework</span>
         <span class="bb-state bb-state-learn">Learning</span>
+      </div>
+    </div>
+
+    <p class="bb-eyebrow bb-eyebrow-next bb-mono">
+      <span class="bb-eyebrow-name">On the box</span>
+      <span class="bb-eyebrow-rule" aria-hidden="true"></span>
+      <span class="bb-eyebrow-meta">What the drawing up top is actually of</span>
+    </p>
+
+    <div class="bb-manifest bb-rise">
+      <div class="bb-row">
+        <span class="bb-row-name">Orchestration</span>
+        <span class="bb-row-what">A panel and Wings on Docker — every server gets its own container, so one crashing can't take the rest with it</span>
+        <span class="bb-state bb-state-solid">Control plane</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">Proxies</span>
+        <span class="bb-row-what">Two Velocity proxies with a limbo server behind them, so a backend going down parks players instead of kicking them</span>
+        <span class="bb-state bb-state-live">Live</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">Backends</span>
+        <span class="bb-row-what">Paper servers on current Minecraft, with my Skript systems and Java plugins running on top</span>
+        <span class="bb-state bb-state-live">Live</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">Data</span>
+        <span class="bb-row-what">Postgres and Valkey behind the panel, MariaDB for the game side</span>
+        <span class="bb-state bb-state-live">Live</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">Networking</span>
+        <span class="bb-row-what">nginx terminating TLS out front, Tailscale meshing this box to my other one</span>
+        <span class="bb-state bb-state-live">Live</span>
+      </div>
+      <div class="bb-row">
+        <span class="bb-row-name">My plugins</span>
+        <span class="bb-row-what"><a class="bb-inline" href="https://github.com/Brick-Bread/Brick-MapProtect">Brick-MapProtect</a> and the player tracker — both running in production, not just built</span>
+        <span class="bb-state bb-state-solid">Shipped</span>
       </div>
     </div>
   </section>
@@ -330,10 +369,11 @@
           JavaScript, HTML and CSS.
         </p>
         <p>
-          Away from Minecraft I run my own infrastructure — Jellyfin and Docker on
-          Ubuntu — which is how I got properly interested in systems, networks and
-          full-stack work in the first place. Breaking my own server and having to fix it
-          taught me more than any tutorial.
+          The whole network runs on a bare-metal Ubuntu box I look after myself —
+          everything in Docker, a panel and Wings spawning each server, nginx and
+          Tailscale holding it together. That's where the interest in systems and
+          networks came from. Breaking my own server and having to fix it taught me
+          more than any tutorial.
         </p>
       </div>
 
